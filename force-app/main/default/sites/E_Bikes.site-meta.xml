@@ -25,10 +25,9 @@
     <referrerPolicyOriginWhenCrossOrigin
     >true</referrerPolicyOriginWhenCrossOrigin>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>test-yypfaowt42yo@example.com</siteAdmin>
-    <siteGuestRecordDefaultOwner
-    >test-yypfaowt42yo@example.com</siteGuestRecordDefaultOwner>
+    <siteAdmin>yeonji.lim@resilient-otter-1ke1a.com</siteAdmin>
+    <siteGuestRecordDefaultOwner>yeonji.lim@resilient-otter-1ke1a.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
-    <subdomain>efficiency-connect-1801-dev--1701a0bb7eb</subdomain>
+    <subdomain>https://resilient-otter-1ke1a-dev-ed.trailblaze.lightning.force.com/lightning/setup/SetupOneHome/home</subdomain>
     <urlPathPrefix>ebikes</urlPathPrefix>
 </CustomSite>

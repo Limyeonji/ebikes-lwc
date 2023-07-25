@@ -1,11 +1,11 @@
 import { LightningElement, wire } from 'lwc';
 
-// Lightning Message Service and a message channel
+// Lightning Message Service
 import { NavigationMixin } from 'lightning/navigation';
 import { subscribe, MessageContext } from 'lightning/messageService';
 import PRODUCT_SELECTED_MESSAGE from '@salesforce/messageChannel/ProductSelected__c';
 
-// Utils to extract field values
+// field values 가져오기
 import { getFieldValue } from 'lightning/uiRecordApi';
 
 // Product__c Schema
@@ -23,11 +23,7 @@ import FOPK_FIELD from '@salesforce/schema/Product__c.Fork__c';
 import FRONT_BRAKES_FIELD from '@salesforce/schema/Product__c.Front_Brakes__c';
 import REAR_BRAKES_FIELD from '@salesforce/schema/Product__c.Rear_Brakes__c';
 
-/**
- * Component to display details of a Product__c.
- */
 export default class ProductCard extends NavigationMixin(LightningElement) {
-    // Exposing fields to make them available in the template
     categoryField = CATEGORY_FIELD;
     levelField = LEVEL_FIELD;
     msrpField = MSRP_FIELD;
@@ -39,21 +35,21 @@ export default class ProductCard extends NavigationMixin(LightningElement) {
     frontBrakesField = FRONT_BRAKES_FIELD;
     rearBrakesField = REAR_BRAKES_FIELD;
 
-    // Id of Product__c to display
+    //레코드 아이디
     recordId;
 
-    // Product fields displayed with specific format
+    // 특정형식으로 표시되는 제품 이름, 사진URL
     productName;
     productPictureUrl;
-
-    /** Load context for Lightning Messaging Service */
+    
+    // messageContext 객체   
     @wire(MessageContext) messageContext;
 
-    /** Subscription for ProductSelected Lightning message */
+    // 리스트에서 선택된 제품의 id를 messageContext에서 읽고 저장할 변수
     productSelectionSubscription;
 
     connectedCallback() {
-        // Subscribe to ProductSelected message
+        // 필터에서 넘어온 메세지를 읽음
         this.productSelectionSubscription = subscribe(
             this.messageContext,
             PRODUCT_SELECTED_MESSAGE,
@@ -62,20 +58,21 @@ export default class ProductCard extends NavigationMixin(LightningElement) {
     }
 
     handleRecordLoaded(event) {
+        // 객체형식으로 선언한건가.. ??
         const { records } = event.detail;
         const recordData = records[this.recordId];
-        this.productName = getFieldValue(recordData, NAME_FIELD);
+
+        //필드 값에 해당하는 value값 가져오기
+        this.productName = getFieldValue(recordData, NAME_FIELD); 
         this.productPictureUrl = getFieldValue(recordData, PICTURE_URL_FIELD);
     }
 
-    /**
-     * Handler for when a product is selected. When `this.recordId` changes, the
-     * lightning-record-view-form component will detect the change and provision new data.
-     */
+    //메세지에서 읽어온 id를 recordId에 넣어줌
     handleProductSelected(productId) {
         this.recordId = productId;
     }
 
+    // 해당 제품의 recordPage로 이동
     handleNavigateToRecord() {
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',

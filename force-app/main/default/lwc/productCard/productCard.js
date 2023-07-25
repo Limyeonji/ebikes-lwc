@@ -58,7 +58,7 @@ export default class ProductCard extends NavigationMixin(LightningElement) {
     }
 
     handleRecordLoaded(event) {
-        // 객체형식으로 선언한건가.. ??
+        // const { records } -> 객체 구조분해할당 방식(destructuring) 
         const { records } = event.detail;
         const recordData = records[this.recordId];
 

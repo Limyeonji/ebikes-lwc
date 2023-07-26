@@ -1,7 +1,15 @@
+<!--
+  @description       : 
+  @author            : yeonji.lim@dkbmc.com
+  @group             : 
+  @last modified on  : 07-26-2023
+  @last modified by  : yeonji.lim@dkbmc.com
+-->
 <template>
     <lightning-card icon-name="standard:apex_plugin">
         <template lwc:if={recordId}>
             <span slot="title">{productName}</span>
+            <!-- record page로 이동하는 button -->
             <lightning-button-icon
                 icon-name="utility:expand_alt"
                 slot="actions"
@@ -9,45 +17,32 @@
                 ><label>Open Record</label></lightning-button-icon
             >
             <div class="slds-var-m-horizontal_medium">
+                <!-- 제품 img -->
                 <img
                     lwc:if={productPictureUrl}
                     src={productPictureUrl}
                     class="product"
                     alt="Product picture"
                 />
+                <!-- 제품 detail -->
                 <lightning-record-view-form
                     record-id={recordId}
                     onload={handleRecordLoaded}
                     object-api-name="Product__c"
-                    density="compact"
-                >
-                    <lightning-output-field
-                        field-name={categoryField}
-                    ></lightning-output-field>
-                    <lightning-output-field
-                        field-name={levelField}
-                    ></lightning-output-field>
-                    <lightning-output-field
-                        field-name={msrpField}
-                    ></lightning-output-field>
+                    density="compact">
+                    
+                    <lightning-output-field field-name={categoryField}></lightning-output-field>
+                    <lightning-output-field field-name={levelField}></lightning-output-field>
+                    <lightning-output-field field-name={msrpField}></lightning-output-field>
 
                     <section>Electric Components</section>
-                    <lightning-output-field
-                        field-name={batteryField}
-                    ></lightning-output-field>
-                    <lightning-output-field
-                        field-name={chargerField}
-                    ></lightning-output-field>
-                    <lightning-output-field
-                        field-name={motorField}
-                    ></lightning-output-field>
+                    <lightning-output-field field-name={batteryField}></lightning-output-field>
+                    <lightning-output-field field-name={chargerField}></lightning-output-field>
+                    <lightning-output-field field-name={motorField}></lightning-output-field>
+                    
                     <section>Frame</section>
-                    <lightning-output-field
-                        field-name={materialField}
-                    ></lightning-output-field>
-                    <lightning-output-field
-                        field-name={forkField}
-                    ></lightning-output-field>
+                    <lightning-output-field field-name={materialField}></lightning-output-field>
+                    <lightning-output-field field-name={forkField}></lightning-output-field>
 
                     <section>Brakes</section>
                     <div class="slds-form-element slds-form-element_horizontal">

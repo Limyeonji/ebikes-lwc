@@ -2,7 +2,7 @@
   @description       : 
   @author            : yeonji.lim@dkbmc.com
   @group             : 
-  @last modified on  : 07-25-2023
+  @last modified on  : 07-26-2023
   @last modified by  : yeonji.lim@dkbmc.com
 -->
 <template>
@@ -15,13 +15,11 @@
                 class="search-bar"
             ></lightning-input>
         </template>
+        <!-- 제품 각각 타일 -->
         <template lwc:if={products.data}>
             <template lwc:if={products.data.records.length}>
                 <div class="content">
-                    <template
-                        for:each={products.data.records}
-                        for:item="product"
-                    >
+                    <template for:each={products.data.records} for:item="product">
                         <c-product-tile
                             key={product.Id}
                             product={product}
@@ -32,6 +30,7 @@
                         </c-product-tile>
                     </template>
                 </div>
+                <!-- 페이징바 -->
                 <c-paginator
                     page-number={pageNumber}
                     page-size={products.data.pageSize}
@@ -50,9 +49,4 @@
             <c-error-panel errors={products.error}></c-error-panel>
         </template>
     </div>
-
-    <div>
-        
-    </div>
-
 </template>

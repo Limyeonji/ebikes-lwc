@@ -1,12 +1,21 @@
+<!--
+  @description       : 
+  @author            : yeonji.lim@dkbmc.com
+  @group             : 
+  @last modified on  : 07-26-2023
+  @last modified by  : yeonji.lim@dkbmc.com
+-->
 <template>
     <lightning-card title="Filters" icon-name="standard:calibration">
         <div class="slds-var-m-horizontal_medium">
+            <!-- 검색창 -->
             <lightning-input
                 label="Search Key"
                 type="search"
                 onchange={handleSearchKeyChange}
             ></lightning-input>
             <section>
+                <!-- 금액 바 -->
                 <lightning-slider
                     label="Max Price"
                     step="100"
@@ -19,10 +28,7 @@
             <section>
                 <h1>Category</h1>
                 <template lwc:if={categories.data}>
-                    <template
-                        for:each={categories.data.values}
-                        for:item="category"
-                    >
+                    <template for:each={categories.data.values} for:item="category">
                         <lightning-input
                             key={category.value}
                             label={category.label}
